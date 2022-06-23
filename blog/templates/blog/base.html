@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog App by TTF</title>
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            }
+        /* The sidebar menu */
+        .sidenav {
+            height: 100%; /* Full-height: remove this if you want "auto" height */
+            width: 180px; /* Set the width of the sidebar */
+            position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1; /* Stay on top */
+            top: 0; /* Stay at the top */
+            left: 0;
+            {#background-color: whitesmoke;#}
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top: 20px;
+            }
+        /* The navigation menu links */
+        .sidenav a {
+            padding: 3px;
+            text-decoration: none;
+            font-size: 19px;
+            color: #3b7dc0;
+            display: block;
+            }
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover {
+            color: DodgerBlue;
+            }
+        /* Style page content */
+        .main {
+            margin-left: 180px; /* Same as the width of the sidenav */
+            font-size: 20px; /* Increased text to enable scrolling */
+            padding: 10px 10px;
+            }
+
+        .nb {
+            list-style-type: none;
+            margin: 1rem;
+            padding: 1rem;
+            }
+
+        ul {
+            margin-left: 1rem;
+        }
+        a {
+            text-decoration: none;
+            color: #3b7dc0;
+        }
+    </style>
+</head>
+<body>
+<!-- Side navigation -->
+<div class="sidenav">
+<ul class="nb">
+    <li><a href="{% url 'blog:index' %}">Home</a></li>
+    <li><a href="{% url 'blog:blogs' %}">All blogs</a></li>
+    <li><a href="{% url 'blog:bloggers' %}">All bloggers</a></li><br>
+    {% if user.is_authenticated %}
+        <h3>User: {{ user }}</h3>
+    <li><a href="{% url 'logout'%}?next={{ request.path }}">Logout</a></li>
+    {% else %}
+   <li><a href="{% url 'login'%}?next={{ request.path }}">Login</a></li>
+    {% endif %}
+</ul>
+</div>
+<div class="main">
+  {% block content %}
+      <!-- Content Goes here -->
+  {% endblock content %}
+</div>
+</body>
+</html>

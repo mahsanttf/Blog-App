@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <strong>Post your comment for: <a href="{% url 'blog:blogsdetails' Blog.id %}"> {{ Blog.blog_name }}</a></strong>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+{% endblock content %}

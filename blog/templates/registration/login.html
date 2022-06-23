@@ -1,0 +1,38 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+ {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+    <style>
+        input[type=submit] {
+            cursor: pointer;
+            height: 2.5rem;
+            width: 4rem;
+            background-color: azure;
+            text-decoration: none;
+            font-size: large;
+            border: 2px solid aqua;
+    }
+    </style>
+<h1 style="color: #3b7dc0">Login</h1>
+<form method="post">
+    {% csrf_token %}
+    <table>
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <br>
+    <input type="submit" value="login">
+  </form>
+
+    <p><a href="{% url 'password_reset' %}">Forget Password?</a></p>
+
+{% endblock content %}

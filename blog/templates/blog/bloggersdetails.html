@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<h1>Blogger: {{ blogauthor.author_name }}</h1>
+
+<h2>Bio</h2>
+
+{{ blogauthor.author_bio }}
+
+<h2>Blogs list</h2>
+<ul>
+{% for x in blogauthor.blogs.all %}
+    <li><a href="{% url 'blog:blogsdetails' x.id%}">{{ x.blog_name }}</a><small> ({{ x.post_date | date }})</small></li>
+{% endfor %}
+</ul>
+{% endblock content %}

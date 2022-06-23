@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% block content %}
+     <style>
+        input[type=submit] {
+            cursor: pointer;
+            height: 2.5rem;
+            width: 5rem;
+            background-color: azure;
+            text-decoration: none;
+            font-size: large;
+            border: 2px solid aqua;
+    }
+    </style>
+
+<h2 style="color: #3b7dc0">Delete Comment </h2>
+ <p>Are you sure you want to delete "{{ object }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <input type="submit" value="Confirm">
+    </form>
+
+{% endblock content %}
